@@ -6,4 +6,6 @@ import br.com.intelipost.user.details.document.UserDetailsIntelipost;
 
 public interface UserDetailIntelipostRepository extends MongoRepository<UserDetailsIntelipost, String>{
 
+	UserDetailsIntelipost findByUserId(Long userId);
+
 }
