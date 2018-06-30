@@ -57,3 +57,102 @@ Como você pode ver, nosso maior desafio está na manutenção e otimização de
 * Organização, semântica, estrutura, legibilidade, manutenibilidade do seu código
 * Alcance dos objetivos propostos
 * Escalabilidade da solução adotada 
+
+# Resposta
+
+
+A solução para este problema pode vir de uma junção de ações. Inicialmente deveriamos realizar um processo eliminativo de testes para visualizar aonde está o maior problema. Um teste de carga no banco de dados com acessos simultaneos nos dará visibilidade se não há um problema nas conexões. Um outro teste feito é um teste de stress no sistema, analisando se a aplicação está comportando o número de requisições. Minhas propostas para solução deste problema seriam:
+
+Publicar todos conteúdos estáticos em cdn, o cdn ajuda nos a não sobrecarregar as requisições ao servidor por conteúdos estáticos, com o cdn publicariamos nossos arquivos estáticos em um paas e as requisições iriam para este serviço.
+
+Avaliar a possibilidade de incluir um load balancer no sistema. O load balancer iria dividir a carga de logins para instâncias da aplicação, assim balanceando a carga de informações em cada servidor.
+    
+Avaliar a possibilidade de cachear algumas informações que não mudam com muita frequencia. Esta solução é mais sensível, sabendo que ela pode ser um problema onde for implementada, deve-se avaliar onde essa solução se adapta, mas se implementada corretamente há grandes benefícios!
+
+Clusterizar o banco de dados, se o banco de dados não está suportando o número de requisições, devemos criar clusters para dividir a carga de conexões.
+
+Diversos serviços PAAS oferecem as soluções descritas acima, a Amazon, Azure, OpenShift(Red Rat), oferecem boas soluções para este problema, portanto, a implementação dessa solução hoje é mais confiável com a implementação destes serviços (desde que haja pessoas com skill na ferramenta). Não vejo a necessidade de criar os próprios clusters ou load balancers, mas se for a solução proposta, os pacotes Spring Clound Netflix OSS oferecem uma gama de soluções interessantes para criar várias instâncias da sua aplicação, isso serve como solução também.
+
+# Solução desenvolvida
+
+Criei um pequeno projeto para exemplificar um sistema de login com o uso de Nosql embedded, cache da aplicação e API. A solução não é escalonável devido a explicação acima, acredito que a solução deveria vir de um especialista Devops depois de identificado que o problema seria ou na aplicação ou no banco de dados, configurando os loadbalancers e os clusters em um paas a solução fica performática e estável.
+
+O projeto segue com as seguintes tecnologias:
+
+* **Spring Boot**
+* **Spring Data**
+* **Maven**
+* **Spring Security**
+* **Thymeleaf**
+* **Embedded Mongodb**
+* **Swagger UI**
+
+# Subir o projeto localmente
+
+## Pre - Requisitos
+
+* Maven
+* Jdk 1.8
+
+
+Para subir o projeto localmente, basta baixar o projeto do repositório, ir na pasta onde se localiza o arquivo pom.xml e rodar o comando:
+
+```
+mvn clean install
+```
+Será feito o build do projeto e gerado o artefato jar, assim que gerado o jar, executar os passos:
+
+```
+cd target
+java -Dserver.port=8080 -jar job-backend-developer-user-details-0.0.1-SNAPSHOT.jar 
+
+```
+O servidor irá subir localmente e adicionará dois o usuário admin da aplicação, segue dados:
+
+```
+usuário: admin@intelipost.com.br
+senha: passw@
+
+```
+
+Com a aplicação local, abra o browser e digite o endereço:
+
+http://localhost:8080
+
+Você será redirecionado para a página de login, digite as credenciais acima e será redirecionado para o dashboard. No dashboard, adicionei um template apenas para exibir alguns dados, quando é realizado o login, o sistema irá na base de dados e buscará os detalhes do usuário logado e imprimirá um json com os detalhes deste usuário. 
+
+Para utilizar o webService de detalhes de usuário, segue a URL:
+
+http://localhost:8080/swagger-ui.html
+
+Ela não necessita de autenticação para usar o endpoint, no endpoint /getDetailsById/{userId}, poderá ser utilizado o id 1 e 2 que são as massas geradas na inicialização do sistema.
+
+
+
+# Heroku
+
+Este projeto foi publicado no Heroku Cloud, segue URLS:
+
+* **Login**
+
+https://intelipost-test.herokuapp.com/
+
+* **Swagger**
+
+https://intelipost-test.herokuapp.com/swagger-ui.html
+
+Se a requisição demorar, isso ocorre devido ao Heroku desligar as instâncias que não estão sendo utilizadas, ao realizar a requisição, ele sobe o Dyno onde está o projeto, isso pode demorar um pouco na primeira vez, nas proximas requisições, percebi que o sistema se comportou bem rápido.
+
+
+# Conclusões
+
+Gostaria de ter conseguido maior tempo para incrementar o projeto, mas, devido a outras demandas que ocorreram diante o desenvolvimento, foi o que eu consegui desenvolver. Ficarei a disposição para retirar dúvidas do projeto. Obrigado.
+
+
+
+
+
+
+
+
+
