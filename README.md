@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/viniciusribeirogtk/job-backend-developer/badge.svg?branch=master)](https://coveralls.io/github/viniciusribeirogtk/job-backend-developer?branch=master)
+
 # Intelipost: Teste prático para Backend Developer
 
 Este é o teste usado por nós aqui da [Intelipost](http://www.intelipost.com.br) para avaliar tecnicamente os candidatos a nossas vagas de Backend. Se você estiver participando de um processo seletivo para nossa equipe, certamente em algum momento receberá este link, mas caso você tenha chego aqui "por acaso", sinta-se convidado a desenvolver nosso teste e enviar uma mensagem para nós nos e-mails `stefan.rehm@intelipost.com.br` e `gustavo.hideyuki@intelipost.com.br`.
