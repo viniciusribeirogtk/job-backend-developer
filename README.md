@@ -111,7 +111,7 @@ O servidor irá subir localmente e adicionará dois o usuário admin da aplicaç
 
 ```
 usuário: admin@intelipost.com.br
-senha: passw@
+senha: passwd@
 
 ```
 
