@@ -42,6 +42,7 @@ public class InitInMemoryRegistries {
 		if (details.isEmpty()) {
 			List<UserDetailsIntelipost> detailsUser = buildDefaultUsers();
 			adminUser.setUserDetails(detailsUser.get(0));
+			detailsUser.forEach(user -> userDetailIntelipostRepository.save(user));
 		}
 	}
 

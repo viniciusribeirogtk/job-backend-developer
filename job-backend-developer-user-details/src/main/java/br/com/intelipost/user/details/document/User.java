@@ -7,8 +7,8 @@ import java.util.Collection;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,6 +31,7 @@ public class User implements UserDetails{
     private Boolean status;
     private LocalDateTime registryDate;
     
+    @DBRef
     private UserDetailsIntelipost userDetails;
     
     public String getId() {

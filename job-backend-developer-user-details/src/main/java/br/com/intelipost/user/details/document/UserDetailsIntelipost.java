@@ -2,6 +2,7 @@ package br.com.intelipost.user.details.document;
 
 import java.io.Serializable;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,18 +12,19 @@ public class UserDetailsIntelipost implements Serializable {
 	private static final long serialVersionUID = 2251876147849323164L;
 
 	@Id
-	private String id;
+	private ObjectId id;
+
 	private Long userId;
 	private String fullName;
 	private String nickName;
 	private String address;
 	private String city;
 
-	public String getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 

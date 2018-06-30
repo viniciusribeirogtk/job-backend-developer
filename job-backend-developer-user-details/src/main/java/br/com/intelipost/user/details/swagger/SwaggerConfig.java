@@ -26,7 +26,7 @@ public class SwaggerConfig {
     public Docket apiDoc() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                    .apis(RequestHandlerSelectors.any())
+                    .apis(RequestHandlerSelectors.basePackage("br.com.intelipost.user.details.endpoint"))
                     .paths(PathSelectors.any())
                     .build()
                 .apiInfo(metaData());

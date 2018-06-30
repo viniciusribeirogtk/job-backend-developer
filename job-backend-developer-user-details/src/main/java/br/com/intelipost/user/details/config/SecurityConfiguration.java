@@ -35,10 +35,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/login/**").permitAll()
 			.antMatchers("/getDetailsById/**").permitAll()
 			.antMatchers("/").hasAnyRole("ADMIN", "USER")
-			.anyRequest().authenticated()
+			.anyRequest().permitAll()
 			.and().formLogin().loginPage("/login").permitAll()
 			.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-        	.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+			.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+			
 		http.formLogin().defaultSuccessUrl("/dashboard", true);
 	}
 
