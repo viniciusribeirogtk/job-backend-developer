@@ -146,7 +146,7 @@ Se a requisição demorar, isso ocorre devido ao Heroku desligar as instâncias 
 
 # Conclusões
 
-Gostaria de ter conseguido maior tempo para incrementar o projeto, mas, devido a outras demandas que ocorreram diante o desenvolvimento, foi o que eu consegui desenvolver. Ficarei a disposição para retirar dúvidas do projeto. Obrigado.
+Gostaria de ter conseguido maior tempo para incrementar o projeto, mas, devido a outras demandas que ocorreram em outros projetos, foi o que em tempo hábil desenvolvi para demonstrar a solução. Ficarei a disposição para retirar dúvidas do projeto. Obrigado.
 
 
 
